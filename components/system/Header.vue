@@ -23,9 +23,18 @@
 <script>
 export default {
   data: () => ({
-    links: [{ title: "Home", url: "/" }],
+    links: [
+      { title: "Home", url: "/" },
+      { title: "About", url: "/about" },
+    ],
   }),
 };
 </script>
 
-<style></style>
+<style lang="scss">
+.navbar-link {
+  &.nuxt-link-exact-active {
+    color: #00c58e;
+  }
+}
+</style>
