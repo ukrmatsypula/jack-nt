@@ -1,11 +1,11 @@
 <template>
-  <div class="post-preview">
+  <nuxt-link class="post-preview" :to="`/blog/${post.id}`">
     <img :src="post.img" :alt="post.img.title" />
     <div class="post-content">
       <h3 class="title">{{ post.title }}</h3>
       <p>{{ post.description }}</p>
     </div>
-  </div>
+  </nuxt-link>
 </template>
 
 <script>
