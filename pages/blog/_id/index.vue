@@ -1,12 +1,17 @@
 <template>
   <div class="wrapper-content wrapper-content--fixed">
-
+    <Post :post="post" />
     <h2>post id: {{ this.$route.params.id }}</h2>
   </div>
 </template>
 
 <script>
+import Post from '@/components/blog/Post.vue';
+
 export default {
+  components: {
+    Post,
+  },
   data: () => ({
     post: {
       id: 1,

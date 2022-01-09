@@ -18,8 +18,10 @@
 export default {
   name: "Post",
   props: {
-    type: Object,
-    required: true,
+    post: {
+      type: Object,
+      required: true,
+    },
   },
 };
 </script>
