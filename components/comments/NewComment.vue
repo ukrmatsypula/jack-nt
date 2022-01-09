@@ -12,7 +12,7 @@
           id="text"
         ></textarea>
         <div class="controls">
-          <button class="btn btnPrimary">Submit</button>
+          <AppButton>Submit</AppButton>
         </div>
       </form>
     </div>
@@ -20,8 +20,13 @@
 </template>
 
 <script>
+import AppButton from "@/components/UI/controls/Button.vue";
+
 export default {
   name: "Contacts",
+  components: {
+    AppButton,
+  },
   data: () => ({
     comment: {
       name: "",
