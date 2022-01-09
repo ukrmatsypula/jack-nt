@@ -1,16 +1,19 @@
 <template>
   <div class="wrapper-content wrapper-content--fixed">
     <Post :post="post" />
+    <NewComment />
     <h2>post id: {{ this.$route.params.id }}</h2>
   </div>
 </template>
 
 <script>
 import Post from '@/components/blog/Post.vue';
+import NewComment from '@/components/comments/NewComment.vue';
 
 export default {
   components: {
     Post,
+    NewComment,
   },
   data: () => ({
     post: {
