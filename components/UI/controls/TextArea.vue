@@ -1,16 +1,14 @@
 <template>
   <div class="control">
-    <label
-      ><slog />
-      <text-area :value="value" @input="$emit('input', $event.target.value)">
-      </text-area>
-    </label>
+    <label><slot /></label>
+    <textarea :value="value" @input="$emit('input', $event.target.value)">
+    </textarea>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Input",
+  name: "TextArea",
   props: {
     value: {
       type: String,

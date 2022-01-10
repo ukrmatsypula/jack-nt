@@ -1,14 +1,12 @@
 <template>
   <div class="control">
-    <label
-      ><slog />
-      <input
-        :type="type"
-        v-bind="$attrs"
-        :value="value"
-        @input="$emit('input', $event.target.value)"
-      />
-    </label>
+    <label><slot /></label>
+    <input
+      :type="type"
+      v-bind="$attrs"
+      :value="value"
+      @input="$emit('input', $event.target.value)"
+    />
   </div>
 </template>
 
