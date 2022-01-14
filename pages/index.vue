@@ -9,16 +9,12 @@
 
 <script>
 import Promo from "@/components/Promo.vue";
-import Intro from "@/components/UI/Intro.vue";
-import PostsList from "@/components/blog/PostsList";
 import Contacts from '@/components/Contacts.vue';
 
 export default {
   name: "IndexPage",
   components: {
     Promo,
-    Intro,
-    PostsList,
     Contacts,
   },
   data: () => ({

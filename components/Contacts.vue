@@ -22,19 +22,9 @@
 </template>
 
 <script>
-import Message from "@/components/UI/Message.vue";
-import AppButton from "@/components/UI/controls/Button.vue";
-import AppInput from "@/components/UI/controls/Input.vue";
-import AppTextArea from "@/components/UI/controls/TextArea.vue";
 
 export default {
   name: "Contacts",
-  components: {
-    AppButton,
-    AppInput,
-    AppTextArea,
-    Message,
-  },
   data: () => ({
     user: {
       name: "",

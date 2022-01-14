@@ -6,15 +6,9 @@
 </template>
 
 <script>
-import Intro from "@/components/UI/Intro.vue";
-import PostsList from "@/components/blog/PostsList";
-
 export default {
   name: "IndexPage",
-  components: {
-    Intro,
-    PostsList,
-  },
+
   data: () => ({
     posts: [
       {
