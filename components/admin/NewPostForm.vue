@@ -19,14 +19,30 @@
 <script>
 export default {
   name: "NewPostForm",
+  props: {
+    postEdit: {
+      type: Object,
+      required: false,
+    },
+  },
   data: () => ({
-    post: {
+    postData: {
       title: "",
       description: "",
       img: "",
       content: "",
     },
   }),
+  computed: {
+    post() {
+      return {
+        title: this.postEdit.title || "",
+        description: this.postEdit.description || "",
+        img: this.postEdit.img || "",
+        content: this.postEdit.content || "",
+      };
+    },
+  },
   methods: {
     onCancel() {
       this.$router.push("/admin/");
