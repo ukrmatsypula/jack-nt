@@ -22,7 +22,7 @@ export default {
   props: {
     postEdit: {
       type: Object,
-      required: false,
+      default: () => ({}),
     },
   },
   data: () => ({
