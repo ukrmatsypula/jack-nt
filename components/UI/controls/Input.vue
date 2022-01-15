@@ -5,6 +5,7 @@
       :type="type"
       v-bind="$attrs"
       :value="value"
+      :required="required"
       @input="$emit('input', $event.target.value)"
     />
   </div>
@@ -22,6 +23,10 @@ export default {
       type: String,
       default: "text",
     },
+    required: {
+      type: Boolean,
+      default: true,
+    }
   },
 };
 </script>
