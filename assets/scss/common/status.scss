@@ -1,11 +1,11 @@
 .status {
-  margin-right: 10px;
   &:before {
     display: inline-block;
-    content: '\A';
+    content: "\A";
     width: 10px;
     height: 10px;
     border-radius: 50%;
+    margin-right: 10px;
   }
   &.false {
     color: #ff5722;

@@ -3,14 +3,16 @@
     <CommentTable
       :thead="['Name', 'Text', 'Status', 'Change Status', 'Delete']"
     >
-    <tbody name="tbody">
-      <tr v-for="(comment, index) in comments" :key="index">
+    <tbody slot="tbody">
+      <tr v-for="comment in comments" :key="comment.id">
         <td><span>{{ comment.name }}</span></td>
         <td><span>{{ comment.text }}</span></td>
-        <td v-if="comment.status"><span class="status true">Publish</span></td>
-        <td v-else><span class="status false">Hiden</span></td>
-        <td><span>{{ comment.changeStatus }}</span></td>
-        <td><span>{{ comment.delete }}</span></td>
+        <td>
+          <span v-if="comment.status" class="status true">Publish</span>
+          <span v-else class="status false">Hiden</span>
+          </td>
+        <td><span @click="changeComment(comment.id)" class="link">Change status</span></td>
+        <td><span @click="deleteComment(comment.id)" class="link">Delete</span></td>
       </tr>
     </tbody>
     </CommentTable>
@@ -42,9 +44,12 @@ export default {
     ],
   }),
   methods: {
-    onSubmit(newPost) {
-      console.log("Post Editing");
-      console.log(newPost);
+    changeComment(id) {
+      console.log(`Change comment id - ${id}`);
+    },
+
+    deleteComment(id) {
+      console.log(`delete comment id - ${id}`);
     },
   },
 };
