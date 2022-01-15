@@ -15,7 +15,6 @@
 
 <script>
 export default {
-  layout: 'admin',
   data: () => ({
     user: {
       email: '',
@@ -41,7 +40,7 @@ export default {
     align-items: center;
     flex-direction: column;
     width: 100%;
-    height: 40vh;
+    height: 70vh;
 
   input {
     min-width: 460px;
