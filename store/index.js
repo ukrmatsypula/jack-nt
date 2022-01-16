@@ -5,13 +5,16 @@ export const state = () => ({
 });
 
 export const getters = {
-  ;
+  getPostsLoaded(state) {
+    return state.postsLoaded;
+  },
+};
 
 export const mutations = {
-  addPost(state, posts) {
+  setPosts(state, posts) {
     return state.postsLoaded = posts;
   },
-  setPosts(state, posts) {
+  addPost(state, post) {
     return state.postsLoaded.push(post);
   },
 };

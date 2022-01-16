@@ -2,7 +2,7 @@
   <div class="wrapper-content wrapper-content--fixed">
     <Promo />
     <Intro title="My lasts posts" />
-    <PostsList :posts="posts" />
+    <PostsList :posts="postsLoaded" />
     <Contacts />
   </div>
 </template>
@@ -39,5 +39,10 @@ export default {
       },
     ],
   }),
+  computed: {
+    postsLoaded() {
+      return this.$store.getters.getPostsLoaded;
+    }
+  }
 };
 </script>
