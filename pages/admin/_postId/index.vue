@@ -9,6 +9,8 @@ import axios from "axios";
 import NewPostForm from "@/components/admin/NewPostForm.vue";
 
 export default {
+  layout: "admin",
+
   components: {
     NewPostForm,
   },
@@ -27,10 +29,11 @@ export default {
       })
       .catch((err) => context.error(err));
   },
-  layout: "admin",
   methods: {
     onSubmit(post) {
-      this.$store.dispatch("editPost", post);
+      this.$store
+        .dispatch("editPost", post)
+        .then(() => this.$router.push("/admin"));
     },
   },
 };
