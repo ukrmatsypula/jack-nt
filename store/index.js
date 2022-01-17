@@ -12,10 +12,18 @@ export const getters = {
 
 export const mutations = {
   setPosts(state, posts) {
-    return state.postsLoaded = posts;
+    return (state.postsLoaded = posts);
   },
+
   addPost(state, post) {
     return state.postsLoaded.push(post);
+  },
+
+  editPost(state, postEdit) {
+    const postIndex = state.postsLoaded.findIndex(
+      (post) => post.id === postEdit.id
+      );
+      return state.postsLoaded[postIndex] = postEdit;
   },
 };
 
@@ -30,7 +38,6 @@ export const actions = {
 
         for (let key in response.data) {
           postsArray.push({ ...response.data[key], id: key });
-          console.log(key);
         }
 
         commit("setPosts", postsArray);
@@ -43,9 +50,22 @@ export const actions = {
         "https://blog-nuxt-5e003-default-rtdb.europe-west1.firebasedatabase.app/post.json",
         post
       )
-      .then((response) =>
-        commit("addPost", { id: response.data.name, ...post })
+      .then((response) => {
+        commit("addPost", { id: response.data.name, ...post });
+      })
+      .catch((error) => console.log(error));
+  },
+
+  async editPost({ commit }, post) {
+
+    return await axios
+      .put(
+        `https://blog-nuxt-5e003-default-rtdb.europe-west1.firebasedatabase.app/post/${post.id}.json`,
+        post
       )
+      .then((response) => {
+        commit("editPost", post);
+      })
       .catch((error) => console.log(error));
   },
 };

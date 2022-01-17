@@ -40,6 +40,7 @@ export default {
         description: this.postEdit.description || "",
         img: this.postEdit.img || "",
         content: this.postEdit.content || "",
+        id: this.postEdit.id || ""
       };
     },
   },

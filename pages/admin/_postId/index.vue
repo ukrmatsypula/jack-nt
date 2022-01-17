@@ -19,7 +19,10 @@ export default {
       )
       .then((response) => {
         return {
-          post: { ...response.data, id: context.params.postId },
+          post: {
+            ...response.data,
+            id: context.params.postId,
+          },
         };
       })
       .catch((err) => context.error(err));
