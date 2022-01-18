@@ -19,11 +19,9 @@
 </template>
 
 <script>
-
-
 export default {
   name: "Contacts",
-  
+
   data: () => ({
     comment: {
       name: "",
@@ -33,12 +31,19 @@ export default {
   }),
   methods: {
     onSubmit() {
-      this.message = "Submited";
+      this.$store
+        .dispatch("addComment", {
+          postId: "",
+          publish: false,
+          ...this.comment,
+        })
+        .then(() => {
+          this.message = "Submited";
 
-      return console.log({
-        name: this.comment.name,
-        text: this.comment.text,
-      });
+          this.comment.name = "";
+          this.comment.text = "";
+        })
+        .catch((error) => console.log(error));
     },
   },
 };

@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const state = () => ({
   postsLoaded: [],
+  commentsLoaded: [],
 });
 
 export const getters = {
@@ -22,8 +23,13 @@ export const mutations = {
   editPost(state, postEdit) {
     const postIndex = state.postsLoaded.findIndex(
       (post) => post.id === postEdit.id
-      );
-      return state.postsLoaded[postIndex] = postEdit;
+    );
+    return (state.postsLoaded[postIndex] = postEdit);
+  },
+
+  addComment(state, comment) {
+    console.log(comment);
+    return state.commentsLoaded.push(comment);
   },
 };
 
@@ -65,6 +71,18 @@ export const actions = {
       )
       .then((response) => {
         commit("editPost", post);
+      })
+      .catch((error) => console.log(error));
+  },
+
+  async addComment({ commit }, comment) {
+    return await axios
+      .post(
+        "https://blog-nuxt-5e003-default-rtdb.europe-west1.firebasedatabase.app/comments.json",
+        comment
+      )
+      .then((response) => {
+        commit("addComment", { ...comment, id: response.data.name });
       })
       .catch((error) => console.log(error));
   },
