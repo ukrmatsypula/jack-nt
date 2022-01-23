@@ -1,11 +1,17 @@
 <template>
-  <section v-if="comments.length" class="comments">
+  <section class="comments">
     <div class="container">
       <h2 class="title">Comments</h2>
-      <div class="comment" v-for="comment in comments" :key="comment.id">
-        <p class="name">{{ comment.name }}</p>
-        <p class="text">{{ comment.text }}</p>
-      </div>
+
+      <template v-if="comments.length">
+        <div class="comment" v-for="comment in comments" :key="comment.id">
+          <p class="name">{{ comment.name }}</p>
+          <p class="text">{{ comment.text }}</p>
+        </div>
+      </template>
+      <template v-else>
+        <Intro title="No comment at this time." padding="0 20px" />
+      </template>
     </div>
   </section>
 </template>
@@ -26,7 +32,6 @@ export default {
 .comments {
   text-align: center;
   margin: 30px auto;
-
 }
 .comment {
   width: 600px;

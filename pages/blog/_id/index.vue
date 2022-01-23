@@ -30,13 +30,13 @@ export default {
       ),
     ]);
 
-    const convertedComments = Object.keys(comments.data).map(
-      (key) => comments.data[key]
+    const filteredComments = Object.values(comments.data).filter(
+      (comment) => comment.postId === context.params.id && comment.publish
     );
 
     return {
       post: posts.data,
-      comments: convertedComments || [],
+      comments: filteredComments,
     };
   },
 };

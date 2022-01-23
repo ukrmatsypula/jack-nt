@@ -1,7 +1,7 @@
 <template>
   <section class="intro">
     <div class="container">
-      <h2>{{ title }}</h2>
+      <h2 :style="{ padding: padding }">{{ title }}</h2>
       <slot />
     </div>
   </section>
@@ -15,6 +15,10 @@ export default {
     title: {
       type: String,
       required: true,
+    },
+    padding: {
+      type: String,
+      default: 0,
     },
   },
   data: () => ({}),
