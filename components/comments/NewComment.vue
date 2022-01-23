@@ -22,6 +22,12 @@
 export default {
   name: "Contacts",
 
+  props: {
+    postId: {
+      type: String,
+      required: true,
+    },
+  },
   data: () => ({
     comment: {
       name: "",
@@ -33,7 +39,7 @@ export default {
     onSubmit() {
       this.$store
         .dispatch("addComment", {
-          postId: "",
+          postId: this.postId,
           publish: false,
           ...this.comment,
         })

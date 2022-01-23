@@ -2,7 +2,7 @@
   <div class="wrapper-content wrapper-content--fixed">
     <Post :post="post" />
     <Comment :comments="comments" />
-    <NewComment />
+    <NewComment :post-id="$route.params.id" />
     <h2>post id: {{ this.$route.params.id }}</h2>
   </div>
 </template>
@@ -36,7 +36,7 @@ export default {
 
     return {
       post: posts.data,
-      comments: convertedComments,
+      comments: convertedComments || [],
     };
   },
 };
