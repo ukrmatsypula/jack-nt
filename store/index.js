@@ -28,7 +28,6 @@ export const mutations = {
   },
 
   addComment(state, comment) {
-    console.log(comment);
     return state.commentsLoaded.push(comment);
   },
 };
