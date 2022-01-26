@@ -1,5 +1,5 @@
 <template>
-  <no-ssr>
+  <client-only>
     <div>
       <CommentTable
         :thead="['Name', 'Text', 'Status', 'Change Status', 'Delete']"
@@ -13,7 +13,7 @@
               <span>{{ comment.text }}</span>
             </td>
             <td>
-              <span v-if="comment.status" class="status true">Publish</span>
+              <span v-if="comment.publish" class="status true">Publish</span>
               <span v-else class="status false">Hiden</span>
             </td>
             <td>
@@ -30,7 +30,7 @@
         </tbody>
       </CommentTable>
     </div>
-  </no-ssr>
+  </client-only>
 </template>
 
 <script>
@@ -62,9 +62,9 @@ export default {
       .then((response) => {
         let commentsArray = [];
         Object.keys(response.data).forEach((key) =>
-          commentsArray.push({...response.data[key], id: key })
+          commentsArray.push({ ...response.data[key], id: key })
         );
-        console.log(commentsArray);
+        this.comments = commentsArray;
       });
   },
 };
