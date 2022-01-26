@@ -17,7 +17,7 @@
               <span v-else class="status false">Hiden</span>
             </td>
             <td>
-              <span @click="changeComment(comment.id)" class="link"
+              <span @click="changeComment(comment)" class="link"
                 >Change status</span
               >
             </td>
@@ -36,6 +36,7 @@
 <script>
 import axios from "axios";
 import CommentTable from "@/components/admin/CommentTable.vue";
+import { actions } from "~/store";
 
 export default {
   components: {
@@ -46,26 +47,38 @@ export default {
     comments: [],
   }),
   methods: {
-    changeComment(id) {
-      console.log(`Change comment id - ${id}`);
+    loadComments() {
+      axios
+        .get(
+          "https://blog-nuxt-5e003-default-rtdb.europe-west1.firebasedatabase.app/comments.json"
+        )
+        .then((response) => {
+          let commentsArray = [];
+          Object.keys(response.data).forEach((key) =>
+            commentsArray.push({ ...response.data[key], id: key })
+          );
+          this.comments = commentsArray;
+        });
+    },
+    changeComment(comment) {
+      comment.publish = !comment.publish;
+
+      axios.put(
+        `https://blog-nuxt-5e003-default-rtdb.europe-west1.firebasedatabase.app/comments/${comment.id}.json`,
+        comment
+      );
     },
 
     deleteComment(id) {
-      console.log(`delete comment id - ${id}`);
+      axios
+        .delete(
+          `https://blog-nuxt-5e003-default-rtdb.europe-west1.firebasedatabase.app/comments/${id}.json`
+        )
+        .then(() => this.loadComments());
     },
   },
-  created() {
-    axios
-      .get(
-        "https://blog-nuxt-5e003-default-rtdb.europe-west1.firebasedatabase.app/comments.json"
-      )
-      .then((response) => {
-        let commentsArray = [];
-        Object.keys(response.data).forEach((key) =>
-          commentsArray.push({ ...response.data[key], id: key })
-        );
-        this.comments = commentsArray;
-      });
+  mounted() {
+    this.loadComments();
   },
 };
 </script>
