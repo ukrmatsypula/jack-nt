@@ -49,6 +49,20 @@ export const actions = {
       })
       .catch((error) => console.log(error));
   },
+
+  authUser({ commit }, authData) {
+    const key = "AIzaSyCSU3A8urhByc-fqy9Xm04US3lJkOIbEIM";
+    return (
+      axios.post(
+        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${key}`
+      ),
+      {
+        email: authData.email,
+        password: authData.password,
+        returnSecureToken: true,
+      }
+    );
+  },
   async addPost({ commit }, post) {
     return await axios
       .post(
@@ -62,7 +76,6 @@ export const actions = {
   },
 
   async editPost({ commit }, post) {
-
     return await axios
       .put(
         `https://blog-nuxt-5e003-default-rtdb.europe-west1.firebasedatabase.app/post/${post.id}.json`,

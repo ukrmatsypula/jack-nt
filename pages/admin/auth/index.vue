@@ -17,33 +17,39 @@
 export default {
   data: () => ({
     user: {
-      email: '',
-      password: '',
-    }
+      email: "",
+      password: "",
+    },
   }),
   methods: {
     onSumbit() {
-      console.log('submit');
-    }
-  }
-}
+      this.$store
+        .dispatch("authUser", this.user)
+        .then((response) => {
+          console.log(response);
+          this.email = "";
+          this.password = "";
+        })
+        .catch((error) => console.log(error));
+    },
+  },
+};
 </script>
 
 <style lang="scss">
-
 .auth {
   text-align: center;
 }
-  .auth-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    height: 70vh;
+.auth-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 70vh;
 
   input {
     min-width: 460px;
   }
-  }
+}
 </style>
