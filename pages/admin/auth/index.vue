@@ -27,8 +27,8 @@ export default {
         .dispatch("authUser", this.user)
         .then((response) => {
           console.log(response);
-          this.email = "";
-          this.password = "";
+          this.user.email = "";
+          this.user.password = "";
         })
         .catch((error) => console.log(error));
     },
