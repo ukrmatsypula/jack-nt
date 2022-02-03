@@ -9,6 +9,9 @@ export const getters = {
   getPostsLoaded(state) {
     return state.postsLoaded;
   },
+  checkAuthUser(state) {
+    return state.token !== null;
+  }
 };
 
 export const mutations = {
