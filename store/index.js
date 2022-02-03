@@ -83,10 +83,10 @@ export const actions = {
       .catch((error) => console.log(error));
   },
 
-  async editPost({ commit }, post) {
+  async editPost({ commit, state }, post) {
     return await axios
       .put(
-        `https://blog-nuxt-5e003-default-rtdb.europe-west1.firebasedatabase.app/post/${post.id}.json`,
+        `https://blog-nuxt-5e003-default-rtdb.europe-west1.firebasedatabase.app/post/${post.id}.json?auth=${state.token}`,
         post
       )
       .then((response) => {
