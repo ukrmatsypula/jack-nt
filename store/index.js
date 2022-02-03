@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const state = () => ({
   postsLoaded: [],
-  commentsLoaded: [],
+  token: null,
 });
 
 export const getters = {
@@ -30,6 +30,9 @@ export const mutations = {
   addComment(state, comment) {
     return state.commentsLoaded.push(comment);
   },
+  setToken(state, token) {
+    return (state.token = token);
+  },
 };
 
 export const actions = {
@@ -50,17 +53,20 @@ export const actions = {
       .catch((error) => console.log(error));
   },
 
-  authUser({ commit }, authData) {
+  async authUser({ commit }, authData) {
     const key = "AIzaSyCSU3A8urhByc-fqy9Xm04US3lJkOIbEIM";
 
-    return axios.post(
-      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${key}`,
-      {
-        email: authData.email,
-        password: authData.password,
-        returnSecureToken: true,
-      }
-    );
+    return await axios
+      .post(
+        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${key}`,
+        {
+          email: authData.email,
+          password: authData.password,
+          returnSecureToken: true,
+        }
+      )
+      .then((response) => commit("setToken", response.data.idToken))
+      .catch((error) => console.log(error));
   },
   async addPost({ commit }, post) {
     return await axios
@@ -86,15 +92,12 @@ export const actions = {
       .catch((error) => console.log(error));
   },
 
-  async addComment({ commit }, comment) {
+  async addComment(comment) {
     return await axios
       .post(
         "https://blog-nuxt-5e003-default-rtdb.europe-west1.firebasedatabase.app/comments.json",
         comment
       )
-      .then((response) => {
-        commit("addComment", { ...comment, id: response.data.name });
-      })
       .catch((error) => console.log(error));
   },
 };

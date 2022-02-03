@@ -25,12 +25,14 @@ export default {
     onSumbit() {
       this.$store
         .dispatch("authUser", this.user)
-        .then((response) => {
-          console.log(response);
+        .then(() => {
+          this.$router.push("/admin");
+        })
+        .catch((error) => {
+          console.log(error);
           this.user.email = "";
           this.user.password = "";
-        })
-        .catch((error) => console.log(error));
+        });
     },
   },
 };
