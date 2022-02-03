@@ -11,7 +11,7 @@ export const getters = {
   },
   checkAuthUser(state) {
     return state.token !== null;
-  }
+  },
 };
 
 export const mutations = {
@@ -35,6 +35,9 @@ export const mutations = {
   },
   setToken(state, token) {
     return (state.token = token);
+  },
+  destroyToken(state) {
+    return (state.token = null);
   },
 };
 
@@ -70,6 +73,9 @@ export const actions = {
       )
       .then((response) => commit("setToken", response.data.idToken))
       .catch((error) => console.log(error));
+  },
+  logoutUser({ commit }) {
+    commit("destroyToken");
   },
   async addPost({ commit }, post) {
     return await axios
