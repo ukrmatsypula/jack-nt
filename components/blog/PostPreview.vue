@@ -38,6 +38,8 @@ export default {
 
   img {
     margin-bottom: 16px;
+    width: 100%;
+    object-fit: cover;
   }
 
   .post-content {
