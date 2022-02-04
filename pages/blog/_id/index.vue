@@ -20,6 +20,44 @@ export default {
     Comment,
   },
 
+    head() {
+    let title = this.post.title;
+    let descritpion = this.post.description;
+    let type = 'article';
+    let img = this.post.img;
+
+    return {
+      title,
+      meta: [
+        {
+          hid: "og:title",
+          name: "og:title",
+          content: title,
+        },
+        {
+          hid: "og: description",
+          name: "og: description",
+          content: "My ssr blog with nuxt.js",
+        },
+        {
+          hid: "description",
+          name: "description",
+          content: descritpion,
+        },
+         {
+          hid: "og:type",
+          name: "og:type",
+          content: type,
+        },
+         {
+          hid: "og:img",
+          name: "og:img",
+          content: img,
+        },
+      ],
+    };
+  },
+
   async asyncData(context) {
     let [posts, comments] = await Promise.all([
       axios.get(

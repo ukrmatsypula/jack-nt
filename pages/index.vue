@@ -9,7 +9,7 @@
 
 <script>
 import Promo from "@/components/Promo.vue";
-import Contacts from '@/components/Contacts.vue';
+import Contacts from "@/components/Contacts.vue";
 
 export default {
   name: "IndexPage",
@@ -39,10 +39,41 @@ export default {
       },
     ],
   }),
+  head() {
+    let title = "My ssr blog";
+    let descritpion = "My ssr blog with nuxt.js";
+    let type = 'site'
+
+    return {
+      title,
+      meta: [
+        {
+          hid: "og:title",
+          name: "og:title",
+          content: title,
+        },
+        {
+          hid: "og: description",
+          name: "og: description",
+          content: "My ssr blog with nuxt.js",
+        },
+        {
+          hid: "description",
+          name: "description",
+          content: descritpion,
+        },
+         {
+          hid: "og:type",
+          name: "og:type",
+          content: type,
+        },
+      ],
+    };
+  },
   computed: {
     postsLoaded() {
       return this.$store.getters.getPostsLoaded;
-    }
-  }
+    },
+  },
 };
 </script>
