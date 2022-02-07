@@ -1,4 +1,5 @@
 <template>
+  <client-only>
   <div class="wrapper">
     <Header />
     <div class="wrapper-content wrapper-content--fixed">
@@ -11,6 +12,7 @@
       <Nuxt />
     </div>
   </div>
+  </client-only>
 </template>
 
 <script>
